@@ -1,0 +1,12 @@
+[
+  { "name": "Ben Hammond", "teamId": "259", "jersey": "3", "classYear": "Junior" },
+  { "name": "Tyler Johnson", "teamId": "259", "jersey": "10", "classYear": "Junior", "position": "F" },
+  { "name": "Amani Hansberry", "teamId": "259", "jersey": "13", "classYear": "Senior" },
+  { "name": "Jaylen Curry", "teamId": "197", "jersey": "0", "classYear": "Senior" },
+  { "name": "Isaiah Elohim", "teamId": "2226", "jersey": "2", "classYear": "Junior" },
+  { "name": "Ethan Copeland", "teamId": "56", "jersey": "1", "classYear": "Senior" },
+  { "name": "Ned Hull", "teamId": "2210", "jersey": "4", "classYear": "Junior" },
+  { "name": "Kuol Atak", "teamId": "201", "jersey": "7", "classYear": "Sophomore" },
+  { "name": "Miles Heide", "teamId": "21", "jersey": "6", "classYear": "Senior", "position": "C" },
+  { "name": "Musa Sagnia", "teamId": "152", "jersey": "31", "classYear": "Sophomore" }
+]

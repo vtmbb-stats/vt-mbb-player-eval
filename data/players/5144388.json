@@ -1,0 +1,258 @@
+{
+  "id": "5144388",
+  "name": "Kuol Atak",
+  "position": "F",
+  "jersey": "7",
+  "classYear": "Sophomore",
+  "headshot": "https://a.espncdn.com/i/headshots/mens-college-basketball/players/full/5144388.png",
+  "statLabels": {
+    "gamesPlayed": "GP",
+    "gamesStarted": "GS",
+    "avgMinutes": "MIN",
+    "avgFieldGoalsMade-avgFieldGoalsAttempted": "FG",
+    "fieldGoalPct": "FG%",
+    "avgThreePointFieldGoalsMade-avgThreePointFieldGoalsAttempted": "3PT",
+    "threePointFieldGoalPct": "3P%",
+    "avgFreeThrowsMade-avgFreeThrowsAttempted": "FT",
+    "freeThrowPct": "FT%",
+    "avgOffensiveRebounds": "OR",
+    "avgDefensiveRebounds": "DR",
+    "avgRebounds": "REB",
+    "avgAssists": "AST",
+    "avgBlocks": "BLK",
+    "avgSteals": "STL",
+    "avgFouls": "PF",
+    "avgTurnovers": "TO",
+    "avgPoints": "PTS"
+  },
+  "seasons": [
+    {
+      "year": "2025-26",
+      "team": "Oklahoma Sooners",
+      "stats": {
+        "gamesPlayed": "24",
+        "gamesStarted": "0",
+        "avgMinutes": "12.4",
+        "avgFieldGoalsMade-avgFieldGoalsAttempted": "2.5-5.3",
+        "fieldGoalPct": "46.5",
+        "avgThreePointFieldGoalsMade-avgThreePointFieldGoalsAttempted": "1.8-4.3",
+        "threePointFieldGoalPct": "41.3",
+        "avgFreeThrowsMade-avgFreeThrowsAttempted": "0.3-0.4",
+        "freeThrowPct": "77.8",
+        "avgOffensiveRebounds": "0.3",
+        "avgDefensiveRebounds": "1.0",
+        "avgRebounds": "1.3",
+        "avgAssists": "0.2",
+        "avgBlocks": "0.4",
+        "avgSteals": "0.2",
+        "avgFouls": "0.9",
+        "avgTurnovers": "0.4",
+        "avgPoints": "7.0"
+      },
+      "totals": {
+        "fieldGoalsMade-fieldGoalsAttempted": "59-127",
+        "fieldGoalPct": "46.5",
+        "threePointFieldGoalsMade-threePointFieldGoalsAttempted": "43-104",
+        "threePointFieldGoalPct": "41.3",
+        "freeThrowsMade-freeThrowsAttempted": "7-9",
+        "freeThrowPct": "77.8",
+        "offensiveRebounds": "7",
+        "defensiveRebounds": "23",
+        "totalRebounds": "30",
+        "assists": "4",
+        "blocks": "10",
+        "steals": "4",
+        "fouls": "21",
+        "turnovers": "9",
+        "points": "168"
+      },
+      "shotChart": "images/shotcharts/5144388/2025-26.png",
+      "playTypes": [
+        {
+          "type": "Spot Up", "freq": "51.7%", "ppp": "1.189", "percentile": "90", "rating": "Excellent",
+          "subTypes": [
+            { "type": "No Dribble Jumper", "freq": "77.0%", "ppp": "1.298" },
+            { "type": "Drives Left", "freq": "13.5%", "ppp": "1.100" },
+            { "type": "Drives Straight", "freq": "4.1%", "ppp": "1.000" },
+            { "type": "Drives Right", "freq": "2.7%", "ppp": "0.000" }
+          ]
+        },
+        {
+          "type": "Transition", "freq": "21.7%", "ppp": "1.290", "percentile": "83", "rating": "Very Good",
+          "subTypes": [
+            { "type": "Left Wing", "freq": "41.9%", "ppp": "1.308" },
+            { "type": "Right Wing", "freq": "35.5%", "ppp": "1.636" },
+            { "type": "Trailer", "freq": "9.7%", "ppp": "0.000" },
+            { "type": "Leak Outs", "freq": "6.5%", "ppp": "1.000" },
+            { "type": "First Middle", "freq": "6.5%", "ppp": "1.500" }
+          ]
+        },
+        {
+          "type": "Off Screen", "freq": "10.5%", "ppp": "0.533", "percentile": "7", "rating": "Poor",
+          "subTypes": [
+            { "type": "To Shooter's Right", "freq": "53.3%", "ppp": "0.625" },
+            { "type": "To Shooter's Left", "freq": "46.7%", "ppp": "0.429" }
+          ]
+        },
+        {
+          "type": "Miscellaneous Plays", "freq": "3.5%", "ppp": "0.800",
+          "subTypes": [
+            { "type": "Foul", "freq": "60.0%", "ppp": "1.333" },
+            { "type": "Dribble Jumper", "freq": "20.0%", "ppp": "0.000" }
+          ]
+        },
+        {
+          "type": "P&R Ball Handler", "freq": "2.8%", "ppp": "0.750",
+          "subTypes": [
+            { "type": "High P&R", "freq": "75.0%", "ppp": "1.000" },
+            { "type": "Right P&R", "freq": "25.0%", "ppp": "0.000" }
+          ]
+        },
+        {
+          "type": "Offensive Rebounds (Put Backs)", "freq": "2.8%", "ppp": "2.250",
+          "subTypes": [
+            { "type": "Short", "freq": "75.0%", "ppp": "2.000" },
+            { "type": "Long", "freq": "25.0%", "ppp": "3.000" }
+          ]
+        },
+        {
+          "type": "P&R Roll Man", "freq": "2.1%", "ppp": "2.000",
+          "subTypes": [{ "type": "Slips the Pick", "freq": "66.7%", "ppp": "3.000" }]
+        },
+        {
+          "type": "Cut", "freq": "2.1%", "ppp": "0.667",
+          "subTypes": [{ "type": "Basket", "freq": "100.0%", "ppp": "0.667" }]
+        },
+        {
+          "type": "Isolation", "freq": "1.4%", "ppp": "3.000",
+          "subTypes": [
+            { "type": "Left", "freq": "50.0%", "ppp": "3.000" },
+            { "type": "Top", "freq": "50.0%", "ppp": "3.000" }
+          ]
+        },
+        {
+          "type": "Handoffs", "freq": "1.4%", "ppp": "1.000",
+          "subTypes": [{ "type": "From Dribble", "freq": "100.0%", "ppp": "1.000" }]
+        }
+      ],
+      "driveDirection": [
+        { "type": "Drives Left", "freq": "66.7%", "fgPct": "50.0%", "ppp": "1.100" },
+        { "type": "Drives Straight", "freq": "20.0%", "fgPct": "33.3%", "ppp": "1.000" },
+        { "type": "Drives Right", "freq": "13.3%", "fgPct": "0.0%", "ppp": "0.000" }
+      ],
+      "shotTypes": [
+        {
+          "type": "Jump Shot", "freq": "87.5%", "fgPct": "42.0%", "pps": "1.22", "percentile": "96", "rating": "Excellent",
+          "subTypes": [
+            {
+              "type": "Catch and Shoot", "freq": "82.1%", "fgPct": "41.3%", "pps": "1.22", "percentile": "87", "rating": "Excellent",
+              "subTypes": [
+                { "type": "Guarded", "freq": "77.2%", "fgPct": "35.2%", "pps": "1.03", "percentile": "64", "rating": "Good" },
+                { "type": "Unguarded", "freq": "22.8%", "fgPct": "61.9%", "pps": "1.86", "percentile": "100", "rating": "Excellent" }
+              ]
+            },
+            { "type": "Dribble Jumper", "freq": "17.0%", "fgPct": "42.1%", "pps": "1.16", "percentile": "94", "rating": "Excellent" }
+          ]
+        },
+        {
+          "type": "At Rim", "freq": "11.7%", "fgPct": "80.0%", "pps": "1.60", "percentile": "99", "rating": "Excellent",
+          "subTypes": [
+            { "type": "Layup", "freq": "66.7%", "fgPct": "70.0%", "pps": "1.40", "percentile": "94", "rating": "Excellent" },
+            { "type": "Dunk", "freq": "33.3%", "fgPct": "100.0%", "pps": "2.00" }
+          ]
+        }
+      ],
+      "shotDistances": [
+        { "type": "Short to 17", "freq": "2.7%", "fgPct": "66.7%", "pps": "1.33" },
+        { "type": "Medium 17 to 3pt", "freq": "2.7%", "fgPct": "66.7%", "pps": "1.33" },
+        { "type": "Long 3pt", "freq": "94.6%", "fgPct": "40.6%", "pps": "1.22", "percentile": "91", "rating": "Excellent" }
+      ],
+      "trend": {
+        "direction": null,
+        "note": ""
+      }
+    }
+  ],
+  "career": {
+    "stats": {
+      "gamesPlayed": "24",
+      "gamesStarted": "0",
+      "totals": {
+        "fieldGoalsMade-fieldGoalsAttempted": "59-127",
+        "threePointFieldGoalsMade-threePointFieldGoalsAttempted": "43-104",
+        "freeThrowsMade-freeThrowsAttempted": "7-9",
+        "offensiveRebounds": "7",
+        "defensiveRebounds": "23",
+        "totalRebounds": "30",
+        "assists": "4",
+        "blocks": "10",
+        "steals": "4",
+        "fouls": "21",
+        "turnovers": "9",
+        "points": "168",
+        "fieldGoalPct": "46.5",
+        "threePointFieldGoalPct": "41.3",
+        "freeThrowPct": "77.8"
+      },
+      "perGame": {
+        "points": "7.0",
+        "totalRebounds": "1.3",
+        "assists": "0.2",
+        "blocks": "0.4",
+        "steals": "0.2",
+        "turnovers": "0.4",
+        "fouls": "0.9",
+        "offensiveRebounds": "0.3",
+        "defensiveRebounds": "1.0"
+      }
+    },
+    "playTypes": [
+      { "type": "Spot Up", "freq": "51.7%", "ppp": "1.189" },
+      { "type": "Transition", "freq": "21.7%", "ppp": "1.290" },
+      { "type": "Off Screen", "freq": "10.5%", "ppp": "0.533" },
+      { "type": "Miscellaneous Plays", "freq": "3.5%", "ppp": "0.800" },
+      { "type": "P&R Ball Handler", "freq": "2.8%", "ppp": "0.750" }
+    ],
+    "shotTypes": [
+      {
+        "type": "Jump Shot", "fgPct": "42.0%", "pps": "1.22",
+        "subTypes": [
+          {
+            "type": "Catch and Shoot", "fgPct": "41.3%", "pps": "1.22",
+            "subTypes": [
+              { "type": "Guarded", "fgPct": "35.2%", "pps": "1.03" },
+              { "type": "Unguarded", "fgPct": "61.9%", "pps": "1.86" }
+            ]
+          },
+          { "type": "Dribble Jumper", "fgPct": "42.1%", "pps": "1.16" }
+        ]
+      },
+      {
+        "type": "At Rim", "fgPct": "80.0%", "pps": "1.60",
+        "subTypes": [{ "type": "Layup", "fgPct": "70.0%", "pps": "1.40" }]
+      }
+    ],
+    "shotDistances": [
+      { "type": "Long 3pt", "fgPct": "40.6%", "pps": "1.22" }
+    ],
+    "driveDirection": [
+      { "type": "Drives Left", "freq": "66.7%", "fgPct": "50.0%", "ppp": "1.100" },
+      { "type": "Drives Straight", "freq": "20.0%", "fgPct": "33.3%", "ppp": "1.000" },
+      { "type": "Drives Right", "freq": "13.3%", "fgPct": "0.0%", "ppp": "0.000" }
+    ]
+  },
+  "aiReview": {
+    "strengths": {
+      "bestArea": "Catch-and-shoot three-point shooting on real volume — 40.6% FG on 106 three-point attempts (Excellent, 91st percentile), climbing to 61.9% when left unguarded. Also a very efficient finisher at the rim (80.0% FG, Excellent, 99th percentile) and off the dribble (42.1% FG on the dribble jumper, Excellent).",
+      "bestPlayType": "Spot Up — his largest role by far (51.7% of possessions, 74 on the season) and Excellent-graded (1.189 PPP, 90th percentile). Transition is a close second (1.290 PPP, Very Good) and even better per-possession.",
+      "overallStrength": "An efficient, high-volume shooter for a big man — nearly every shot type and shot distance category graded Good or better, and his two highest-usage play types (Spot Up, Transition) are also his best-graded. For someone used primarily off spot-ups and in transition, that's an ideal alignment of volume and efficiency."
+    },
+    "weaknesses": {
+      "worstArea": "Nothing stands out at real volume the way Off Screen does among his play types (see below) — his shot profile is efficient across the board.",
+      "worstPlayType": "Off Screen — graded Poor (7th percentile, 0.533 PPP) on real volume (15 possessions, 10.5% of his offense), a clear outlier next to his Spot Up and Transition efficiency.",
+      "overallWeakness": "The one action that doesn't fit his otherwise efficient profile is coming off screens — a real gap given how good he is on nearly everything else, including catch-and-shoot jumpers off other actions.",
+      "developmentTarget": "Work on using screens/movement more effectively — given how well he shoots when set (Spot Up) or in space (Transition), the Off Screen inefficiency looks more like a timing/reads issue than a shooting problem worth addressing on film."
+    }
+  },
+  "coachReview": ""
+}

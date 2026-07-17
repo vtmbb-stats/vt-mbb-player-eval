@@ -1,0 +1,491 @@
+:root {
+  --maroon: #6a2c3e;
+  --maroon-dark: #4d1f2d;
+  --orange: #cf4520;
+  --bg: #f7f5f3;
+  --card-bg: #ffffff;
+  --border: #e2ddd8;
+  --text: #241417;
+  --text-muted: #6b5f63;
+  --improved: #2e7d46;
+  --declined: #c23b22;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.site-header {
+  background: var(--maroon);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.site-header-top {
+  padding: 14px 20px 6px;
+}
+
+.site-header-top h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: #e9c9c9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 10px 16px 12px;
+  scrollbar-width: thin;
+}
+
+.tab {
+  flex: 0 0 auto;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.tab:hover { background: rgba(255, 255, 255, 0.18); }
+
+.tab.active {
+  background: var(--orange);
+  border-color: var(--orange);
+  font-weight: 600;
+}
+
+main#app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+.loading, .error {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 0;
+}
+
+/* Roster grid */
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.player-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.player-card .card-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+  margin: 0 auto 14px;
+}
+
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--maroon);
+  color: #fff;
+  font-weight: 700;
+}
+
+.card-avatar.avatar-fallback { font-size: 2.5rem; }
+.header-avatar.avatar-fallback { font-size: 1.8rem; }
+
+.player-card .name {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.player-card .meta {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-top: 6px;
+}
+
+/* Player page */
+.player-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.player-header .header-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.player-header h2 {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+}
+
+.player-header .meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 1.05rem;
+  color: var(--maroon);
+  border-bottom: 2px solid var(--maroon);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+/* Stat table */
+.stat-table-wrap { overflow-x: auto; }
+
+table.stat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: var(--card-bg);
+}
+
+table.stat-table th, table.stat-table td {
+  padding: 7px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+table.stat-table th {
+  background: var(--maroon);
+  color: #fff;
+  font-weight: 600;
+}
+
+table.stat-table td:first-child, table.stat-table th:first-child {
+  text-align: left;
+}
+
+table.stat-table tr.career-row td {
+  font-weight: 700;
+  background: #f1e7ea;
+}
+
+/* Play types */
+.play-type-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.play-type-chip {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+
+.play-type-chip .pt-name { font-weight: 600; }
+.play-type-chip .pt-stats { color: var(--text-muted); margin-left: 6px; }
+
+.play-type-chip-expandable {
+  cursor: pointer;
+}
+
+.play-type-chip-expandable summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.play-type-chip-expandable summary::-webkit-details-marker { display: none; }
+
+.play-type-chip-expandable summary::after {
+  content: "▾";
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--maroon);
+  font-size: 0.7rem;
+  transition: transform 0.12s ease;
+}
+
+.play-type-chip-expandable[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.pt-subtypes {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 8px 0 0;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pt-subtypes li { font-size: 0.8rem; }
+.pt-subtypes .pt-name { font-weight: 500; }
+
+table.career-stat-table td:nth-child(n+2),
+table.career-stat-table th:nth-child(n+2) {
+  text-align: center;
+}
+
+.stat-table-expandable {
+  cursor: pointer;
+}
+
+.stat-table-expandable summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline;
+}
+
+.stat-table-expandable summary::-webkit-details-marker { display: none; }
+
+.stat-table-expandable summary::after {
+  content: "▾";
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--maroon);
+  font-size: 0.7rem;
+  transition: transform 0.12s ease;
+}
+
+.stat-table-expandable[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.stat-table-expandable .pt-subtypes {
+  white-space: normal;
+  margin-top: 6px;
+}
+
+.stat-group {
+  margin-top: 12px;
+}
+
+.stat-group:first-child {
+  margin-top: 0;
+}
+
+.stat-group-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+/* Placeholders for data not yet added */
+.placeholder {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  background: #fbfaf9;
+}
+
+/* Season breakdown */
+.season-block {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.season-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.season-block-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.season-block-header .team {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.season-body {
+  display: grid;
+  grid-template-columns: minmax(320px, 460px) 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .season-body { grid-template-columns: 1fr; }
+}
+
+.shot-chart img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.season-stat-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.season-stat-line .stat {
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  text-align: center;
+  min-width: 56px;
+}
+
+.season-stat-line .stat .val { display: block; font-weight: 700; font-size: 0.95rem; }
+.season-stat-line .stat .label { display: block; color: var(--text-muted); font-size: 0.68rem; text-transform: uppercase; }
+
+.stat-trend {
+  font-size: 0.7rem;
+  margin-left: 3px;
+}
+
+.stat-trend.up { color: var(--improved); }
+.stat-trend.down { color: var(--declined); }
+.stat-trend.same { color: var(--text-muted); }
+
+.trend-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.career-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* Strength / weakness cards */
+.sw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .sw-grid { grid-template-columns: 1fr; }
+}
+
+.sw-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--improved);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.sw-card.weakness { border-left-color: var(--declined); }
+
+.sw-card h4 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.sw-card dl {
+  margin: 0;
+}
+
+.sw-card dt {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.sw-card dt:first-child { margin-top: 0; }
+
+.sw-card dd {
+  margin: 2px 0 0;
+  font-size: 0.95rem;
+}
+
+.coach-review-text {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--maroon);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--maroon);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-link:hover { text-decoration: underline; }

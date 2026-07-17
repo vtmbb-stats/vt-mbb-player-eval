@@ -1,0 +1,203 @@
+{
+  "id": "5311995",
+  "name": "Musa Sagnia",
+  "position": "F",
+  "jersey": "31",
+  "classYear": "Sophomore",
+  "headshot": "https://a.espncdn.com/i/headshots/mens-college-basketball/players/full/5311995.png",
+  "statLabels": {
+    "gamesPlayed": "GP",
+    "gamesStarted": "GS",
+    "avgMinutes": "MIN",
+    "avgFieldGoalsMade-avgFieldGoalsAttempted": "FG",
+    "fieldGoalPct": "FG%",
+    "avgThreePointFieldGoalsMade-avgThreePointFieldGoalsAttempted": "3PT",
+    "threePointFieldGoalPct": "3P%",
+    "avgFreeThrowsMade-avgFreeThrowsAttempted": "FT",
+    "freeThrowPct": "FT%",
+    "avgOffensiveRebounds": "OR",
+    "avgDefensiveRebounds": "DR",
+    "avgRebounds": "REB",
+    "avgAssists": "AST",
+    "avgBlocks": "BLK",
+    "avgSteals": "STL",
+    "avgFouls": "PF",
+    "avgTurnovers": "TO",
+    "avgPoints": "PTS"
+  },
+  "seasons": [
+    {
+      "year": "2025-26",
+      "team": "NC State Wolfpack",
+      "stats": {
+        "gamesPlayed": "34",
+        "gamesStarted": "1",
+        "avgMinutes": "12.4",
+        "avgFieldGoalsMade-avgFieldGoalsAttempted": "1.0-1.7",
+        "fieldGoalPct": "59.6",
+        "avgThreePointFieldGoalsMade-avgThreePointFieldGoalsAttempted": "0.0-0.1",
+        "threePointFieldGoalPct": "25.0",
+        "avgFreeThrowsMade-avgFreeThrowsAttempted": "0.3-0.6",
+        "freeThrowPct": "45.5",
+        "avgOffensiveRebounds": "1.3",
+        "avgDefensiveRebounds": "1.6",
+        "avgRebounds": "2.8",
+        "avgAssists": "0.2",
+        "avgBlocks": "0.5",
+        "avgSteals": "0.6",
+        "avgFouls": "1.8",
+        "avgTurnovers": "0.5",
+        "avgPoints": "2.3"
+      },
+      "totals": {
+        "fieldGoalsMade-fieldGoalsAttempted": "34-57",
+        "fieldGoalPct": "59.6",
+        "threePointFieldGoalsMade-threePointFieldGoalsAttempted": "1-4",
+        "threePointFieldGoalPct": "25.0",
+        "freeThrowsMade-freeThrowsAttempted": "10-22",
+        "freeThrowPct": "45.5",
+        "offensiveRebounds": "43",
+        "defensiveRebounds": "53",
+        "totalRebounds": "96",
+        "assists": "8",
+        "blocks": "17",
+        "steals": "20",
+        "fouls": "60",
+        "turnovers": "16",
+        "points": "79"
+      },
+      "shotChart": "images/shotcharts/5311995/2025-26.png",
+      "playTypes": [
+        {
+          "type": "Cut", "freq": "31.0%", "ppp": "1.346", "percentile": "73", "rating": "Very Good",
+          "subTypes": [{ "type": "Basket", "freq": "92.3%", "ppp": "1.375" }]
+        },
+        {
+          "type": "Offensive Rebounds (Put Backs)", "freq": "19.0%", "ppp": "1.063", "percentile": "37", "rating": "Average",
+          "subTypes": [{ "type": "Short", "freq": "100.0%", "ppp": "1.063" }]
+        },
+        {
+          "type": "Transition", "freq": "14.3%", "ppp": "1.000", "percentile": "38", "rating": "Average",
+          "subTypes": [
+            { "type": "First Middle", "freq": "50.0%", "ppp": "1.167" },
+            { "type": "Left Wing", "freq": "16.7%", "ppp": "0.500" },
+            { "type": "Trailer", "freq": "16.7%", "ppp": "1.000" }
+          ]
+        },
+        {
+          "type": "Miscellaneous Plays", "freq": "11.9%", "ppp": "0.300", "percentile": "19", "rating": "Below Average",
+          "subTypes": [{ "type": "Turnover", "freq": "60.0%", "ppp": "0.000" }]
+        },
+        {
+          "type": "Spot Up", "freq": "9.5%", "ppp": "0.500",
+          "subTypes": [
+            { "type": "Drives Right", "freq": "50.0%", "ppp": "0.500" },
+            { "type": "No Dribble Jumper", "freq": "37.5%", "ppp": "0.000" }
+          ]
+        },
+        {
+          "type": "P&R Roll Man", "freq": "9.5%", "ppp": "1.000",
+          "subTypes": [{ "type": "Rolls to Basket", "freq": "87.5%", "ppp": "1.143" }]
+        }
+      ],
+      "driveDirection": [
+        { "type": "Drives Right", "freq": "71.4%", "fgPct": "0.0%", "ppp": "0.400" },
+        { "type": "Drives Left", "freq": "28.6%", "fgPct": "100.0%", "ppp": "1.000" }
+      ],
+      "shotTypes": [
+        {
+          "type": "Jump Shot", "freq": "8.8%", "fgPct": "20.0%", "pps": "0.60",
+          "subTypes": [
+            {
+              "type": "Catch and Shoot", "freq": "80.0%", "fgPct": "25.0%", "pps": "0.75",
+              "subTypes": [
+                { "type": "Guarded", "freq": "25.0%", "fgPct": "100.0%", "pps": "3.00" },
+                { "type": "Unguarded", "freq": "75.0%", "fgPct": "0.0%", "pps": "0.00" }
+              ]
+            }
+          ]
+        },
+        { "type": "Hook", "freq": "8.8%", "fgPct": "40.0%", "pps": "0.80" },
+        {
+          "type": "At Rim", "freq": "84.2%", "fgPct": "64.6%", "pps": "1.29", "percentile": "77", "rating": "Very Good",
+          "subTypes": [
+            { "type": "Layup", "freq": "81.3%", "fgPct": "61.5%", "pps": "1.23", "percentile": "78", "rating": "Very Good" },
+            { "type": "Dunk", "freq": "14.6%", "fgPct": "85.7%", "pps": "1.71" }
+          ]
+        }
+      ],
+      "shotDistances": [
+        { "type": "Short to 17", "freq": "20.0%", "fgPct": "0.0%", "pps": "0.00" },
+        { "type": "Long 3pt", "freq": "80.0%", "fgPct": "25.0%", "pps": "0.75" }
+      ],
+      "trend": {
+        "direction": null,
+        "note": ""
+      }
+    }
+  ],
+  "career": {
+    "stats": {
+      "gamesPlayed": "34",
+      "gamesStarted": "1",
+      "totals": {
+        "fieldGoalsMade-fieldGoalsAttempted": "34-57",
+        "threePointFieldGoalsMade-threePointFieldGoalsAttempted": "1-4",
+        "freeThrowsMade-freeThrowsAttempted": "10-22",
+        "offensiveRebounds": "43",
+        "defensiveRebounds": "53",
+        "totalRebounds": "96",
+        "assists": "8",
+        "blocks": "17",
+        "steals": "20",
+        "fouls": "60",
+        "turnovers": "16",
+        "points": "79",
+        "fieldGoalPct": "59.6",
+        "threePointFieldGoalPct": "25.0",
+        "freeThrowPct": "45.5"
+      },
+      "perGame": {
+        "points": "2.3",
+        "totalRebounds": "2.8",
+        "assists": "0.2",
+        "blocks": "0.5",
+        "steals": "0.6",
+        "turnovers": "0.5",
+        "fouls": "1.8",
+        "offensiveRebounds": "1.3",
+        "defensiveRebounds": "1.6"
+      }
+    },
+    "playTypes": [
+      { "type": "Cut", "freq": "31.0%", "ppp": "1.346" },
+      { "type": "Offensive Rebounds (Put Backs)", "freq": "19.0%", "ppp": "1.063" },
+      { "type": "Transition", "freq": "14.3%", "ppp": "1.000" },
+      { "type": "Miscellaneous Plays", "freq": "11.9%", "ppp": "0.300" },
+      { "type": "Spot Up", "freq": "9.5%", "ppp": "0.500" },
+      { "type": "P&R Roll Man", "freq": "9.5%", "ppp": "1.000" }
+    ],
+    "shotTypes": [
+      { "type": "At Rim", "fgPct": "64.6%", "pps": "1.29" },
+      { "type": "Hook", "fgPct": "40.0%", "pps": "0.80" },
+      { "type": "Jump Shot", "fgPct": "20.0%", "pps": "0.60" }
+    ],
+    "shotDistances": [
+      { "type": "Long 3pt", "fgPct": "25.0%", "pps": "0.75" }
+    ]
+  },
+  "aiReview": {
+    "strengths": {
+      "bestArea": "Finishing around the rim — 64.6% FG on 48 attempts (Very Good, 77th percentile), including 85.7% on dunks. His interior scoring efficiency is well ahead of his other numbers.",
+      "bestPlayType": "Cut — his largest role by far (31.0% of possessions, Very Good/73rd percentile at 1.346 PPP), almost entirely finishing plays at the basket off cuts rather than creating his own offense.",
+      "overallStrength": "A low-usage, high-efficiency finisher in a clearly-defined role — nearly all his offense comes from cuts, put-backs, and rolling to the rim, and he converts those chances well (64.6% at the rim). For a role player, that's an efficient, low-risk profile."
+    },
+    "weaknesses": {
+      "worstArea": "Jump shooting — 20.0% FG on jump shots (5 attempts) and 25.0% on threes (4 attempts). Very small sample, but there's effectively no perimeter game showing yet.",
+      "worstPlayType": "Miscellaneous Plays, mostly turnovers, graded Below Average (19th percentile, 0.300 PPP) — worth watching as his role grows, though volume is modest (10 possessions).",
+      "overallWeakness": "He has no real shot-creation or perimeter shooting profile yet — everything productive he does is generated by cutting, rebounding, or rolling, not shot-making. That's fine for his current role but caps what he offers if used away from the basket.",
+      "developmentTarget": "Given the shooting numbers are all very small-sample right now, the main development target is simply expanding his offensive role beyond finishing — a jump shot (even a limited one) would raise his ceiling, but there isn't enough volume yet to say whether that's a real weakness or just an untested part of his game."
+    }
+  },
+  "coachReview": ""
+}

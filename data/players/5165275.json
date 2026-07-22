@@ -345,6 +345,10 @@
     "shotDistances": [
       { "type": "Short to 17", "fgPct": "19.0%", "pps": "0.381" },
       { "type": "Long 3pt", "fgPct": "37.9%", "pps": "1.138" }
+    ],
+    "driveDirection": [
+      { "type": "Drives Left", "freq": "57.8%", "fgPct": "41.7%", "ppp": "0.615" },
+      { "type": "Drives Right", "freq": "42.2%", "fgPct": "33.3%", "ppp": "0.526" }
     ]
   },
   "aiReview": {

@@ -5194,11 +5194,11 @@
   {
    "season": "2026-27",
    "team": "Virginia Tech",
-   "games": 2,
+   "games": 5,
    "minutes": 158,
-   "postup_share": 0.276,
-   "percentile": null,
-   "through": "2026-11-05"
+   "postup_share": 0.288,
+   "percentile": 61,
+   "through": "2026-11-16"
   }
  ],
  "postups": [
@@ -5223,20 +5223,20 @@
   {
    "season": "2026-27",
    "spot": "Right block",
-   "poss": 4,
-   "pts": 7
+   "poss": 7,
+   "pts": 11
   },
   {
    "season": "2026-27",
    "spot": "Left block",
-   "poss": 1,
-   "pts": 0
+   "poss": 7,
+   "pts": 2
   },
   {
    "season": "2026-27",
    "spot": "Flash middle",
-   "poss": 3,
-   "pts": 4
+   "poss": 7,
+   "pts": 8
   }
  ],
  "drives": [
@@ -5264,16 +5264,16 @@
   {
    "season": "2026-27",
    "direction": "Drives Left",
-   "share": 1,
-   "fg_pct": null,
+   "share": 0.5,
+   "fg_pct": 1,
    "ppp": 1
   },
   {
    "season": "2026-27",
    "direction": "Drives Right",
-   "share": 0,
-   "fg_pct": null,
-   "ppp": null
+   "share": 0.5,
+   "fg_pct": 1,
+   "ppp": 1
   },
   {
    "season": "2026-27",

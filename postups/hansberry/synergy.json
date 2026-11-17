@@ -1,18 +1,18 @@
 {
-  "_how_to_update": "Paste this season's Synergy numbers here after each export, then run: node postups/hansberry/update.js. 'games' is how many games the export covers; 'through' is the date of the last one. Leave fg_pct/ppp null when Synergy shows no attempts.",
+  "_how_to_update": "Paste this season's Synergy numbers here after each export, then run: node postups/hansberry/update.js --push. 'games' is how many games the export covers; 'through' is the date of the last one. 'percentile' is the Post-Up PPP rank. Leave fg_pct/ppp null when Synergy shows no attempts.",
   "2026-27": {
-    "games": 2,
-    "through": "2026-11-05",
-    "postup_share": 0.276,
-    "percentile": null,
+    "games": 5,
+    "through": "2026-11-16",
+    "postup_share": 0.288,
+    "percentile": 61,
     "postups": [
-      { "spot": "Right block", "poss": 4, "pts": 7 },
-      { "spot": "Left block", "poss": 1, "pts": 0 },
-      { "spot": "Flash middle", "poss": 3, "pts": 4 }
+      { "spot": "Right block", "poss": 7, "pts": 11 },
+      { "spot": "Left block", "poss": 7, "pts": 2 },
+      { "spot": "Flash middle", "poss": 7, "pts": 8 }
     ],
     "drives": [
-      { "direction": "Drives Left", "share": 1, "fg_pct": null, "ppp": 1 },
-      { "direction": "Drives Right", "share": 0, "fg_pct": null, "ppp": null },
+      { "direction": "Drives Left", "share": 0.5, "fg_pct": 1, "ppp": 1 },
+      { "direction": "Drives Right", "share": 0.5, "fg_pct": 1, "ppp": 1 },
       { "direction": "Drives Straight", "share": 0, "fg_pct": null, "ppp": null }
     ]
   }

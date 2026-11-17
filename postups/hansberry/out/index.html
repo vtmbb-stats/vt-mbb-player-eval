@@ -1,0 +1,694 @@
+<meta name="dash-one-writer">
+<style>
+.hx { display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); max-width: 72rem; margin-inline: auto; }
+.hx-head { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.hx-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.hx-sub, .hx-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; line-height: 1.5; max-width: 70ch; }
+.hx-switch { display: inline-flex; align-self: flex-start; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+.hx-switch button { font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-md); background-color: transparent; color: var(--color-fg); border: 0; cursor: pointer; }
+.hx-switch button + button { border-left: 1px solid var(--color-border-line); }
+.hx-switch button[aria-pressed="true"] { background-color: var(--color-fg); color: var(--color-bg); }
+.hx-switch button:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+.hx-take { font-size: var(--cds-font-size-body); line-height: 1.6; margin: 0; max-width: 70ch; }
+.hx b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.hx-sec { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.hx-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.hx-h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.hx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); }
+.hx-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+.hx-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: var(--cds-gap-md); }
+.hx-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.hx-label { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.hx-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.hx-scroll { overflow-x: auto; }
+.hx-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.hx-table th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; position: sticky; top: 0; background: var(--color-panel); }
+.hx-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.hx-table .num { text-align: right; }
+.hx-table tr.hx-on td { font-weight: 600; }
+.hx-movebox { max-height: 26rem; overflow: auto; }
+.hx-chart { position: relative; min-height: 12rem; }
+.hx-court { position: relative; min-height: 14rem; }
+.hx-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 16rem; z-index: 2; }
+.hx-tip .k { color: var(--cds-text-secondary); }
+.hx-spots { display: grid; grid-template-columns: auto 1fr auto; gap: var(--cds-gap-sm) var(--cds-gap-md); align-items: center; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.hx-bar { height: 0.75rem; border-radius: 3px; }
+.hx-track { background: var(--cds-chart-grid); border-radius: 3px; overflow: hidden; }
+.hx-zg { display: grid; grid-template-columns: minmax(6.5rem, auto) repeat(4, 1fr); gap: 2px; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.hx-zg > div { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-radius: 3px; }
+.hx-zg .h { color: var(--color-fg-muted); }
+.hx-zg .c { text-align: center; }
+.hx-zg .c span { display: block; color: var(--color-fg-muted); }
+.hx-lr { display: grid; grid-template-columns: 1fr 1fr; gap: var(--cds-gap-md); }
+.hx-details summary { cursor: pointer; font-size: var(--cds-font-size-body); }
+.hx-details dl { display: grid; grid-template-columns: minmax(8rem, auto) 1fr; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); max-width: 80ch; }
+.hx-details dt { font-weight: var(--cds-font-weight-medium); }
+.hx-details dd { margin: 0; color: var(--color-fg-muted); line-height: 1.5; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.hx-ctrls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md) var(--cds-gap-lg); align-items: flex-end; }
+.hx-ctrl { display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+.hx-ctrl-wide { flex: 1 1 100%; }
+.hx-chips { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); min-height: 1.9rem; }
+.hx-chip { font: inherit; font-size: var(--cds-font-size-caption); display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.7rem; border: 1px solid var(--color-border-line); border-radius: 999px; background-color: transparent; color: var(--color-fg); cursor: pointer; }
+.hx-chip[aria-pressed="true"] { background-color: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+.hx-chip:focus-visible, .hx-seg button:focus-visible, .hx-mx button:focus-visible, .hx-reset:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.hx-sw { width: 0.7rem; height: 0.7rem; border-radius: 50%; flex: none; display: inline-block; }
+.hx-cnt { opacity: 0.65; font-variant-numeric: tabular-nums; }
+.hx-seg { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+.hx-seg button { font: inherit; font-size: var(--cds-font-size-caption); padding: 0.3rem 0.75rem; background-color: transparent; color: var(--color-fg); border: 0; cursor: pointer; }
+.hx-seg button + button { border-left: 1px solid var(--color-border-line); }
+.hx-seg button[aria-pressed="true"] { background-color: var(--color-fg); color: var(--color-bg); }
+.hx-reset { font: inherit; font-size: var(--cds-font-size-caption); background-color: transparent; border: 0; color: var(--color-fg-muted); text-decoration: underline; cursor: pointer; padding: 0.3rem 0; }
+.hx-lab { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-lg); align-items: start; margin-block: var(--cds-gap-md); }
+.hx-labside { display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+.hx-sum { margin: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+.hx-sum-big { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-title); font-weight: 400; font-variant-numeric: tabular-nums; }
+.hx-mx { display: grid; grid-template-columns: minmax(7rem, auto) repeat(4, 1fr); gap: 2px; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.hx-mx .h { color: var(--color-fg-muted); padding: 0.3rem; }
+.hx-mx .rl { display: flex; align-items: center; gap: 0.4rem; color: var(--color-fg); }
+.hx-mx button { font: inherit; border: 0; border-radius: 3px; padding: 0.3rem; background-color: transparent; color: var(--color-fg); cursor: pointer; text-align: center; }
+.hx-mx button:disabled { cursor: default; color: var(--color-fg-muted); }
+.hx-mx button span { display: block; color: var(--color-fg-muted); }
+.hx-mx button.on { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+</style>
+
+<div class="hx">
+  <header class="hx-head" id="top">
+    <h1 class="hx-title">Amani Hansberry post-up report</h1>
+    <div class="hx-switch" role="group" aria-label="Which games">
+      <button type="button" data-view="season" aria-pressed="true">This season</button>
+      <button type="button" data-view="vt" aria-pressed="false">VT career</button>
+    </div>
+    <p class="hx-sub" id="sub"><span data-show="season"><span data-draw="cell" data-view="cur" data-source="season_status" data-field="season">—</span> only, updated after every game.</span><span data-show="vt" hidden>Every Virginia Tech game since 2025-26.</span> How often he posts up, how efficient he is by spot, and which side he finishes on.</p>
+    <p class="hx-take" id="take"><span data-show="season">This season</span><span data-show="vt" hidden>At Virginia Tech</span> he has <b data-draw="cell" data-source="post_by_view" data-field="poss" data-keys="spot=All" data-fmt="int">—</b> post-ups in <b data-draw="cell" data-source="post_by_view" data-field="games" data-keys="spot=All" data-fmt="int">—</b> games, <b data-draw="cell" data-source="post_by_view" data-field="per_game" data-keys="spot=All" data-fmt="dec1">—</b> a game and <b data-draw="cell" data-source="post_by_view" data-field="share_of_plays" data-keys="spot=All" data-fmt="pct1">—</b> of his plays, at <b data-draw="cell" data-source="post_by_view" data-field="ppp" data-keys="spot=All" data-fmt="ppp">—</b> points per post-up.<span data-draw="spot-gate"></span><span data-part="most"> He posts on <b data-draw="spot" data-which="most" data-what="name">—</b> most (<b data-draw="spot" data-which="most" data-what="poss">—</b> post-ups, <b data-draw="spot" data-which="most" data-what="ppp">—</b> PPP)</span><span data-part="best">, but <b data-draw="spot" data-which="best" data-what="name">—</b> has been his best spot (<b data-draw="spot" data-which="best" data-what="ppp">—</b> PPP on <b data-draw="spot" data-which="best" data-what="poss">—</b>)</span><span data-part="most">.</span><span data-draw="side-gate"></span><span data-part="far"> He finishes far better on the <b data-draw="side-word">—</b> side of the rim:</span><span data-part="better"> He finishes better on the <b data-draw="side-word">—</b> side of the rim:</span><span data-part="same"> He finishes about the same on both sides of the rim:</span><span data-part="sides"> <b data-draw="cell" data-source="zones_by_view" data-field="fg_pct" data-keys="zone=Paint (rim + short)&amp;side=Left" data-fmt="pct">—</b> on paint twos on the left (<span data-draw="cell" data-source="zones_by_view" data-field="fgm" data-keys="zone=Paint (rim + short)&amp;side=Left" data-fmt="int">—</span> of <span data-draw="cell" data-source="zones_by_view" data-field="fga" data-keys="zone=Paint (rim + short)&amp;side=Left" data-fmt="int">—</span>) vs <b data-draw="cell" data-source="zones_by_view" data-field="fg_pct" data-keys="zone=Paint (rim + short)&amp;side=Right" data-fmt="pct">—</b> on the right (<span data-draw="cell" data-source="zones_by_view" data-field="fgm" data-keys="zone=Paint (rim + short)&amp;side=Right" data-fmt="int">—</span> of <span data-draw="cell" data-source="zones_by_view" data-field="fga" data-keys="zone=Paint (rim + short)&amp;side=Right" data-fmt="int">—</span>).</span></p>
+    <p class="hx-note" id="coverage"><span data-draw="cov-gate"></span>This season: shot data covers <span data-draw="cell" data-view="cur" data-source="season_status" data-field="pbp_games" data-fmt="int">—</span> of <span data-draw="cell" data-view="cur" data-source="season_status" data-field="games" data-fmt="int">—</span> games, through <span data-draw="cell" data-view="cur" data-source="season_status" data-field="last_pbp_game" data-fmt="date">—</span>.<span data-part="pending"> ESPN hasn’t posted play-by-play for <span data-draw="cell" data-view="cur" data-source="season_status" data-field="pending">—</span> yet; those shots get added on the next update.</span><span data-part="syn"> Synergy post-up numbers cover <span data-draw="cell" data-view="cur" data-source="season_status" data-field="synergy_games" data-fmt="int">—</span> games, through <span data-draw="cell" data-view="cur" data-source="season_status" data-field="synergy_through" data-fmt="date">—</span>.</span><span data-part="small"> Still a small sample.</span></p>
+  </header>
+
+  <section class="hx-sec" id="frequency">
+    <h2 class="hx-h2">How often he posts up</h2>
+    <div class="hx-tiles">
+      <div class="hx-tile"><span class="hx-label">Post-ups</span><span class="hx-big" data-draw="cell" data-source="post_by_view" data-field="poss" data-keys="spot=All" data-fmt="int">—</span></div>
+      <div class="hx-tile"><span class="hx-label">Post-ups per game</span><span class="hx-big" data-draw="cell" data-source="post_by_view" data-field="per_game" data-keys="spot=All" data-fmt="dec1">—</span></div>
+      <div class="hx-tile"><span class="hx-label">Share of his plays</span><span class="hx-big" data-draw="cell" data-source="post_by_view" data-field="share_of_plays" data-keys="spot=All" data-fmt="pct1">—</span></div>
+      <div class="hx-tile"><span class="hx-label">Points per post-up</span><span class="hx-big" data-draw="cell" data-source="post_by_view" data-field="ppp" data-keys="spot=All" data-fmt="ppp">—</span></div>
+      <div class="hx-tile"><span class="hx-label">Post-area 2s per game</span><span class="hx-big" data-draw="cell" data-source="view_info" data-field="post_area_per_game" data-fmt="dec1">—</span></div>
+      <div class="hx-tile"><span class="hx-label">Hooks and turnarounds, made / tried</span><span class="hx-big"><span data-draw="cell" data-source="view_info" data-field="post_moves_made" data-fmt="int">—</span> / <span data-draw="cell" data-source="view_info" data-field="post_moves" data-fmt="int">—</span></span></div>
+    </div>
+    <p class="hx-note">Post-area 2s are shots from the short paint and the nail or high post, not counting shots at the rim.</p>
+
+    <div class="hx-card" id="by-season">
+      <h3 class="hx-h3">Post-ups by season</h3>
+      <p class="hx-note">The row in bold is the one the rest of the page is showing. Synergy games can trail the ESPN game count until the next export.</p>
+      <div class="hx-scroll">
+        <table class="hx-table" data-source="post_by_view" data-row-key="view,spot">
+          <thead><tr><th data-field="view">Season</th><th data-field="team">Team</th><th data-field="games" class="num">Games</th><th data-field="poss" class="num">Post-ups</th><th data-field="per_game" class="num">Per game</th><th data-field="share_of_plays" class="num">Share of plays</th><th data-field="ppp" class="num">PPP</th></tr></thead>
+          <tbody data-draw="season-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="hx-sec" id="spots">
+    <h2 class="hx-h2">Right block, left block or the nail</h2>
+    <p class="hx-note">The left card is where the post-up started. The right card is where the shot went up, so a right-block catch finished with a hook across the lane counts as a middle shot there.</p>
+    <div class="hx-grid">
+      <div class="hx-card" id="synergy-spots">
+        <h3 class="hx-h3">Post-ups by spot</h3>
+        <p class="hx-note">Bar length is how many post-ups started there. PPP is points per post-up.</p>
+        <div class="hx-chart" data-draw="spots" data-source="post_by_view"></div>
+      </div>
+      <div class="hx-card" id="zones">
+        <h3 class="hx-h3">FG% by zone and side</h3>
+        <p class="hx-note">Made/attempted, then FG%. Darker cells shot better. At rim is within 4 ft of the basket.</p>
+        <div data-draw="zonegrid" data-source="zones_by_view"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hx-sec" id="shot-explorer">
+    <h2 class="hx-h2">Shot explorer</h2>
+    <p class="hx-note">Every 2-point attempt in the games shown, colored by shot type. Filled dots are makes and rings are misses. Pick shot types, a side of the floor or a result to narrow it down, or click any cell in the table to see one shot type on one side. Hover or tap a dot to see the play.</p>
+    <div class="hx-card">
+      <div class="hx-ctrls">
+        <div class="hx-ctrl hx-ctrl-wide">
+          <span class="hx-label">Shot type (pick one or more)</span>
+          <div class="hx-chips" data-draw="shot-kinds" data-source="shots"></div>
+        </div>
+        <div class="hx-ctrl">
+          <span class="hx-label">Side of the floor</span>
+          <div class="hx-seg" role="group" aria-label="Side of the floor">
+            <button type="button" data-side="All" aria-pressed="true">All</button>
+            <button type="button" data-side="Left" aria-pressed="false">Left</button>
+            <button type="button" data-side="Middle" aria-pressed="false">Middle</button>
+            <button type="button" data-side="Right" aria-pressed="false">Right</button>
+          </div>
+        </div>
+        <div class="hx-ctrl">
+          <span class="hx-label">Result</span>
+          <div class="hx-seg" role="group" aria-label="Result">
+            <button type="button" data-result="All" aria-pressed="true">All</button>
+            <button type="button" data-result="Made" aria-pressed="false">Made</button>
+            <button type="button" data-result="Missed" aria-pressed="false">Missed</button>
+          </div>
+        </div>
+        <button type="button" class="hx-reset">Clear filters</button>
+      </div>
+      <div class="hx-lab">
+        <div class="hx-court" data-draw="shot-court" data-source="shots"></div>
+        <div class="hx-labside">
+          <p class="hx-sum" data-draw="shot-sum" data-source="shots">—</p>
+          <h3 class="hx-h3">FG% by shot type and side</h3>
+          <p class="hx-note">Made/attempted, then FG%. Darker cells shot better. Click a cell to show those shots on the court.</p>
+          <div data-draw="shot-matrix" data-source="shots"></div>
+        </div>
+      </div>
+      <p class="hx-note">Side is which side of the rim the shot went up on; middle is within 2 ft of the center of the rim.</p>
+    </div>
+  </section>
+
+  <section class="hx-sec" id="direction">
+    <h2 class="hx-h2">Is he better going right or left?</h2>
+    <p class="hx-note">Two views of it: which side of the rim he finishes on, and which way he goes when he drives (all drives, not only post-ups).</p>
+    <div class="hx-grid">
+      <div class="hx-card" id="finish-side">
+        <h3 class="hx-h3">Paint twos by side of the rim</h3>
+        <p class="hx-note">Shots at the rim and in the short paint, split by which side of the basket they went up on.</p>
+        <div class="hx-lr">
+          <div class="hx-tile"><span class="hx-label">Left side</span><span class="hx-big" data-draw="cell" data-source="zones_by_view" data-field="fg_pct" data-keys="zone=Paint (rim + short)&amp;side=Left" data-fmt="pct">—</span><span class="hx-label"><span data-draw="cell" data-source="zones_by_view" data-field="fgm" data-keys="zone=Paint (rim + short)&amp;side=Left" data-fmt="int">—</span> of <span data-draw="cell" data-source="zones_by_view" data-field="fga" data-keys="zone=Paint (rim + short)&amp;side=Left" data-fmt="int">—</span></span></div>
+          <div class="hx-tile"><span class="hx-label">Right side</span><span class="hx-big" data-draw="cell" data-source="zones_by_view" data-field="fg_pct" data-keys="zone=Paint (rim + short)&amp;side=Right" data-fmt="pct">—</span><span class="hx-label"><span data-draw="cell" data-source="zones_by_view" data-field="fgm" data-keys="zone=Paint (rim + short)&amp;side=Right" data-fmt="int">—</span> of <span data-draw="cell" data-source="zones_by_view" data-field="fga" data-keys="zone=Paint (rim + short)&amp;side=Right" data-fmt="int">—</span></span></div>
+        </div>
+        <p class="hx-note">Shots straight under or in front of the rim count as middle and are left out of both.</p>
+      </div>
+      <div class="hx-card" id="drives">
+        <h3 class="hx-h3">Drive direction</h3>
+        <p class="hx-note">From Synergy, so it runs through the last Synergy export.</p>
+        <div class="hx-scroll">
+          <table class="hx-table" data-source="drives" data-row-key="season,direction">
+            <thead><tr><th data-field="season">Season</th><th data-field="direction">Direction</th><th data-field="share" class="num">Share of drives</th><th data-field="fg_pct" class="num">FG%</th><th data-field="ppp" class="num">PPP</th></tr></thead>
+            <tbody data-draw="drive-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hx-sec" id="moves">
+    <h2 class="hx-h2">Hooks and turnarounds</h2>
+    <p class="hx-note">Every hook and turnaround, with game and clock.</p>
+    <div class="hx-card">
+      <div class="hx-scroll hx-movebox">
+        <table class="hx-table" data-source="shots" data-row-key="shot_id">
+          <thead><tr><th data-field="date">Date</th><th data-field="opponent">Opponent</th><th data-field="half">Half</th><th data-field="clock">Clock</th><th data-field="post_move">Move</th><th data-field="zone">Zone</th><th data-field="side">Side</th><th data-field="made">Result</th></tr></thead>
+          <tbody data-draw="move-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="hx-sec" id="games">
+    <h2 class="hx-h2">Game by game</h2>
+    <div class="hx-card">
+      <h3 class="hx-h3">Post-area 2-point attempts per game</h3>
+      <p class="hx-note">Short paint plus nail or high post, not counting shots at the rim. Dark is made, light is missed.</p>
+      <div class="hx-chart" data-draw="games" data-source="per_game"></div>
+    </div>
+  </section>
+
+  <details class="hx-details" id="notes">
+    <summary>Definitions</summary>
+    <dl>
+      <dt>Zones</dt><dd>At rim: within 4 ft. Short paint: 4 to 11 ft and no more than 10 ft out from the basket. Nail or high post: within 7 ft of the middle of the floor, 10 to 17 ft out. Side: 2 ft or more off the middle of the rim.</dd>
+      <dt>Post-ups vs. shots</dt><dd>Post-up counts and PPP include every post touch, including ones that end in a pass, a foul or a turnover. The shot chart and zone numbers only include shots.</dd>
+      <dt>Sources</dt><dd>Shot locations, shot types and minutes come from ESPN play-by-play and update after every game. Post-ups by spot, PPP, share of plays and drive direction come from Synergy and update when a new export is added. 2025-26 shot types were relabeled from VT stats where ESPN only said "jumper".</dd>
+    </dl>
+  </details>
+</div>
+
+<script>
+window.hx = (() => {
+  // The current season is the latest season in the game list, so a new season needs no code change.
+  const curOf = (games) => (games && games.length ? games.map((g) => g.season).sort().pop() : null);
+  const cur = () => { const g = dash.data('games'); return g.status === 'ok' ? curOf(g.data) : null; };
+  const mode = () => (dash.params().view === 'vt' ? 'vt' : 'season');
+  const view = () => (mode() === 'vt' ? 'vt' : cur());
+  const inView = (season, v = view()) => (v === 'vt' ? true : season === v);
+  const label = (v) => (v === 'vt' ? 'VT career' : v);
+  document.querySelectorAll('.hx-switch [data-view]').forEach((b) => b.addEventListener('click', () => dash.setParams({ view: b.dataset.view })));
+  dash.onData(() => {
+    const m = mode();
+    document.querySelectorAll('.hx-switch [data-view]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === m)));
+    document.querySelectorAll('[data-show]').forEach((e) => { e.hidden = e.dataset.show !== m; });
+  });
+  const ord = (n) => { const s = ['th', 'st', 'nd', 'rd'], m = n % 100; return n + (s[(m - 20) % 10] || s[m] || s[0]); };
+  const F = { int: d3.format(','), pct: d3.format('.0%'), pct1: d3.format('.1%'), ppp: d3.format('.3f'), dec1: d3.format('.1f'), ord, date: (d) => d3.utcFormat('%b %-d')(new Date(d + 'T00:00:00Z')) };
+  const fmt = (val, f) => (val == null || Number.isNaN(val)) ? '—' : (F[f] ? F[f](val) : String(val));
+  const enc = (s) => String(s).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D').replace(/,/g, '%2C');
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const date = (d) => d3.utcFormat('%b %-d, %Y')(new Date(d + 'T00:00:00Z'));
+  return { curOf, cur, mode, view, inView, label, fmt, enc, css, date };
+})();
+</script>
+
+<script>
+dash.calc('post_by_view', {
+  title: 'Post-ups by season and spot',
+  description: 'Synergy post-ups, points, PPP, per game and share of plays for each Virginia Tech season and all of them combined (view vt), overall and by spot.',
+  inputs: ['postups', 'seasons'],
+  fn: (postups, seasons) => {
+    const out = [];
+    const r3 = (x) => Math.round(x * 1000) / 1000;
+    const synergy = seasons.filter((s) => s.postup_share && s.games);
+    const div = (a, b) => (b ? a / b : null);
+    for (const v of [...synergy.map((s) => s.season), 'vt']) {
+      const ss = v === 'vt' ? synergy : synergy.filter((s) => s.season === v);
+      const rows = postups.filter((p) => ss.some((s) => s.season === p.season));
+      const poss = rows.reduce((a, r) => a + r.poss, 0);
+      const pts = rows.reduce((a, r) => a + r.pts, 0);
+      const games = ss.reduce((a, s) => a + s.games, 0);
+      const plays = ss.reduce((a, s) => a + postups.filter((p) => p.season === s.season).reduce((b, r) => b + r.poss, 0) / s.postup_share, 0);
+      const team = 'Virginia Tech';
+      const pg = div(poss, games), sh = div(poss, plays), pp = div(pts, poss);
+      out.push({ view: v, spot: 'All', team, games, poss, pts, ppp: pp == null ? null : r3(pp), per_game: pg == null ? null : Math.round(pg * 10) / 10, share_of_plays: sh == null ? null : r3(sh), share_of_postups: 1, percentile: v === 'vt' ? null : ss[0].percentile });
+      for (const spot of ['Right block', 'Left block', 'Flash middle']) {
+        const sr = rows.filter((r) => r.spot === spot);
+        if (!sr.length) continue;
+        const p = sr.reduce((a, r) => a + r.poss, 0), q = sr.reduce((a, r) => a + r.pts, 0);
+        out.push({ view: v, spot, team, games, poss: p, pts: q, ppp: r3(q / p), per_game: Math.round(p / games * 10) / 10, share_of_plays: null, share_of_postups: r3(p / poss), percentile: null });
+      }
+    }
+    return out;
+  },
+});
+
+dash.calc('zones_by_view', {
+  title: 'Shot zones by side',
+  description: 'ESPN 2-point attempts with a location in Virginia Tech games, counted by zone and side of the rim.',
+  inputs: ['games', 'shots'],
+  fn: (games, shots) => {
+    const out = [];
+    const zones = {
+      'At rim': (r) => r.zone === 'At rim',
+      'Short paint': (r) => r.zone === 'Short paint',
+      'Nail / high post': (r) => r.zone === 'Nail / high post',
+      'Paint (rim + short)': (r) => r.zone === 'At rim' || r.zone === 'Short paint',
+      'Post moves': (r) => r.post_move !== '',
+    };
+    for (const v of [hx.curOf(games), 'vt']) {
+      const s = shots.filter((r) => hx.inView(r.season, v) && r.zone !== 'No location');
+      for (const [zone, test] of Object.entries(zones)) {
+        for (const side of ['Left', 'Middle', 'Right', 'All']) {
+          const rows = s.filter((r) => test(r) && (side === 'All' || r.side === side));
+          if (!rows.length) continue;
+          const fgm = rows.reduce((a, r) => a + r.made, 0);
+          out.push({ view: v, zone, side, fga: rows.length, fgm, fg_pct: Math.round(fgm / rows.length * 1000) / 1000 });
+        }
+      }
+    }
+    return out;
+  },
+});
+
+dash.calc('view_info', {
+  title: 'ESPN totals at Virginia Tech',
+  description: 'Virginia Tech games, post-area 2-point attempts per located game, and post moves.',
+  inputs: ['games', 'shots'],
+  fn: (games, shots) => [hx.curOf(games), 'vt'].map((v) => {
+    const g = games.filter((r) => hx.inView(r.season, v));
+    const s = shots.filter((r) => hx.inView(r.season, v));
+    const located = new Set(s.filter((r) => r.zone !== 'No location').map((r) => r.shot_id.split('-')[0]));
+    const pa = s.filter((r) => r.zone === 'Short paint' || r.zone === 'Nail / high post');
+    const mv = s.filter((r) => r.post_move !== '');
+    return { view: v, games: g.length, located_games: located.size, post_area_fga: pa.length, post_area_per_game: Math.round(pa.length / Math.max(located.size, 1) * 10) / 10, post_moves: mv.length, post_moves_made: mv.reduce((a, r) => a + r.made, 0) };
+  }),
+});
+
+dash.calc('season_status', {
+  title: 'This season so far',
+  description: 'For the current season: games played, games with ESPN play-by-play, games still waiting on it, and how many games the latest Synergy export covers.',
+  inputs: ['games', 'seasons'],
+  fn: (games, seasons) => {
+    const season = hx.curOf(games);
+    const g = games.filter((r) => r.season === season).sort((a, b) => a.date.localeCompare(b.date));
+    const withPbp = g.filter((r) => r.detailed_pbp);
+    const waiting = g.filter((r) => !r.detailed_pbp);
+    const syn = seasons.find((s) => s.season === season) || {};
+    return [{
+      view: season, season, games: g.length, pbp_games: withPbp.length,
+      last_pbp_game: withPbp.length ? withPbp[withPbp.length - 1].date : null,
+      pending_games: waiting.length,
+      pending: waiting.map((r) => r.opponent.replace(/ [A-Z][a-z]+$/, '') + ' (' + d3.utcFormat('%b %-d')(new Date(r.date + 'T00:00:00Z')) + ')').join(', '),
+      synergy_games: syn.games || 0, synergy_through: syn.through || null,
+    }];
+  },
+});
+
+dash.calc('per_game', {
+  title: 'Post-area attempts per game',
+  description: 'For each game, ESPN post-area 2-point attempts and makes, and post moves.',
+  inputs: ['games', 'shots'],
+  fn: (games, shots) => games.map((g) => {
+    const s = shots.filter((r) => r.shot_id.split('-')[0] === g.game_id);
+    const pa = s.filter((r) => r.zone === 'Short paint' || r.zone === 'Nail / high post');
+    return { game_id: g.game_id, season: g.season, date: g.date, opponent: g.opponent, minutes: g.minutes, located: s.some((r) => r.zone !== 'No location') ? 1 : 0, post_area_fga: pa.length, post_area_fgm: pa.reduce((a, r) => a + r.made, 0), post_moves: s.filter((r) => r.post_move !== '').length };
+  }),
+});
+</script>
+
+<script>
+dash.draw('cell', (el) => {
+  const v = el.dataset.view === 'cur' ? hx.cur() : (el.dataset.view || hx.view());
+  const where = 'view=' + hx.enc(v) + (el.dataset.keys ? '&' + el.dataset.keys : '');
+  el.dataset.where = where;
+  const d = dash.data(el.dataset.source);
+  if (d.status !== 'ok') { el.textContent = '—'; return; }
+  const want = where.split('&').map((p) => p.split('=').map(decodeURIComponent));
+  const row = d.data.find((r) => want.every(([k, val]) => String(r[k]) === val));
+  el.textContent = row ? hx.fmt(row[el.dataset.field], el.dataset.fmt) : '—';
+});
+
+// Which spot he uses most and which is his best (3+ post-ups), for the view shown.
+const spotPick = () => {
+  const d = dash.data('post_by_view');
+  if (d.status !== 'ok' || !d.data) return {};
+  const spots = d.data.filter((r) => r.view === hx.view() && r.spot !== 'All' && r.poss > 0);
+  const most = spots.slice().sort((a, b) => b.poss - a.poss)[0];
+  const best = spots.filter((r) => r.poss >= 3).sort((a, b) => b.ppp - a.ppp)[0];
+  return { most, best: best && most && best.spot !== most.spot ? best : null };
+};
+// Paint twos left vs right for the view shown, once both sides have 3+ attempts.
+const sidePick = () => {
+  const d = dash.data('zones_by_view');
+  if (d.status !== 'ok' || !d.data) return null;
+  const at = (side) => d.data.find((r) => r.view === hx.view() && r.zone === 'Paint (rim + short)' && r.side === side);
+  const L = at('Left'), R = at('Right');
+  if (!L || !R || L.fga < 3 || R.fga < 3) return null;
+  const gap = L.fg_pct - R.fg_pct;
+  return { side: gap >= 0 ? 'left' : 'right', size: Math.abs(gap) >= 0.1 ? 'far' : Math.abs(gap) >= 0.03 ? 'better' : 'same' };
+};
+const showParts = (el, on) => {
+  el.parentElement.querySelectorAll('[data-part]').forEach((p) => { if (p.dataset.part in on) p.hidden = !on[p.dataset.part]; });
+};
+
+dash.draw('spot-gate', (el) => {
+  const { most, best } = spotPick();
+  showParts(el, { most: !!most, best: !!best });
+});
+
+dash.draw('spot', (el) => {
+  const r = spotPick()[el.dataset.which];
+  if (!r) { el.textContent = '—'; return; }
+  el.dataset.source = 'post_by_view';
+  el.dataset.where = 'view=' + hx.enc(r.view) + '&spot=' + hx.enc(r.spot);
+  if (el.dataset.what === 'name') { el.dataset.field = 'spot'; el.textContent = r.spot === 'Flash middle' ? 'the nail' : 'the ' + r.spot.toLowerCase(); }
+  else { el.dataset.field = el.dataset.what; el.textContent = hx.fmt(r[el.dataset.what], el.dataset.what === 'ppp' ? 'ppp' : 'int'); }
+});
+
+dash.draw('side-gate', (el) => {
+  const s = sidePick();
+  showParts(el, { far: !!s && s.size === 'far', better: !!s && s.size === 'better', same: !!s && s.size === 'same', sides: !!s });
+});
+
+dash.draw('side-word', (el) => {
+  const s = sidePick();
+  el.textContent = s ? s.side : '—';
+});
+
+dash.draw('cov-gate', (el) => {
+  const d = dash.data('season_status');
+  const r = d.status === 'ok' && d.data ? d.data[0] : null;
+  showParts(el, { pending: !!r && r.pending_games > 0, syn: !!r && r.synergy_games < r.games, small: !!r && hx.mode() === 'season' && r.games < 6 });
+});
+
+dash.draw('season-rows', (tb) => {
+  const d = dash.data('post_by_view');
+  tb.replaceChildren();
+  if (d.status !== 'ok') return;
+  const v = hx.view();
+  d.data.filter((r) => r.spot === 'All').forEach((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = hx.enc(r.view) + ',' + hx.enc(r.spot);
+    if (r.view === v) tr.className = 'hx-on';
+    const cells = [hx.label(r.view), r.team, hx.fmt(r.games, 'int'), hx.fmt(r.poss, 'int'), hx.fmt(r.per_game, 'dec1'), hx.fmt(r.share_of_plays, 'pct1'), hx.fmt(r.ppp, 'ppp')];
+    cells.forEach((c, i) => { const td = document.createElement('td'); td.textContent = c; if (i > 1) td.className = 'num'; tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+});
+
+dash.draw('spots', (el) => {
+  el.replaceChildren();
+  const d = dash.data('post_by_view');
+  if (d.status !== 'ok') return;
+  const v = hx.view();
+  const rows = d.data.filter((r) => r.view === v && r.spot !== 'All');
+  const grid = document.createElement('div');
+  grid.className = 'hx-spots';
+  const head = ['Spot', 'Post-ups', 'PPP'];
+  head.forEach((h) => { const s = document.createElement('span'); s.className = 'hx-label'; s.textContent = h; grid.appendChild(s); });
+  const maxP = d3.max(rows, (r) => r.poss) || 1;
+  rows.forEach((r) => {
+    const name = document.createElement('span'); name.textContent = r.spot === 'Flash middle' ? 'Nail (flash middle)' : r.spot;
+    const cell = document.createElement('div'); cell.style.display = 'flex'; cell.style.alignItems = 'center'; cell.style.gap = '0.5rem';
+    const bar = document.createElement('div'); bar.className = 'hx-bar'; bar.style.width = (r.poss / maxP * 70) + '%'; bar.style.background = dash.colors[0];
+    const lab = document.createElement('span'); lab.textContent = r.poss + ' (' + hx.fmt(r.share_of_postups, 'pct') + ')';
+    cell.append(bar, lab);
+    const ppp = document.createElement('b'); ppp.textContent = hx.fmt(r.ppp, 'ppp');
+    grid.append(name, cell, ppp);
+  });
+  el.appendChild(grid);
+});
+
+dash.draw('zonegrid', (el) => {
+  el.replaceChildren();
+  const d = dash.data('zones_by_view');
+  if (d.status !== 'ok') return;
+  const v = hx.view();
+  const rows = d.data.filter((r) => r.view === v);
+  const grid = document.createElement('div'); grid.className = 'hx-zg';
+  const add = (text, cls, sub, bg) => { const c = document.createElement('div'); c.className = cls; c.textContent = text; if (sub != null) { const s = document.createElement('span'); s.textContent = sub; c.appendChild(s); } if (bg) c.style.background = bg; grid.appendChild(c); };
+  add('', 'h'); ['Left', 'Middle', 'Right', 'All'].forEach((s) => add(s, 'h c'));
+  ['At rim', 'Short paint', 'Nail / high post', 'Post moves'].forEach((z) => {
+    add(z === 'Post moves' ? 'Hooks / turnarounds' : z, 'h');
+    ['Left', 'Middle', 'Right', 'All'].forEach((s) => {
+      const r = rows.find((x) => x.zone === z && x.side === s);
+      if (!r) { add('–', 'c'); return; }
+      const tint = `color-mix(in srgb, ${dash.colors[0]} ${Math.round(r.fg_pct * 50)}%, transparent)`;
+      add(hx.fmt(r.fg_pct, 'pct'), 'c', r.fgm + '/' + r.fga, tint);
+    });
+  });
+  el.appendChild(grid);
+});
+
+dash.draw('drive-rows', (tb) => {
+  tb.replaceChildren();
+  const d = dash.data('drives');
+  if (d.status !== 'ok') return;
+  const v = hx.view();
+  d.data.filter((r) => hx.inView(r.season, v)).forEach((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = hx.enc(r.season) + ',' + hx.enc(r.direction);
+    [r.season, r.direction, hx.fmt(r.share, 'pct1'), hx.fmt(r.fg_pct, 'pct1'), hx.fmt(r.ppp, 'ppp')].forEach((c, i) => { const td = document.createElement('td'); td.textContent = c; if (i > 1) td.className = 'num'; tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+});
+
+dash.draw('move-rows', (tb) => {
+  tb.replaceChildren();
+  const d = dash.data('shots');
+  if (d.status !== 'ok') return;
+  const v = hx.view();
+  d.data.filter((r) => hx.inView(r.season, v) && r.post_move).sort((a, b) => a.date.localeCompare(b.date)).forEach((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = r.shot_id;
+    [hx.date(r.date), r.opponent, r.half, r.clock, r.post_move, r.zone, r.side, r.made ? 'Made' : 'Missed'].forEach((c) => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+});
+
+dash.draw('games', (el) => {
+  el.replaceChildren();
+  const d = dash.data('per_game');
+  if (d.status !== 'ok') return;
+  const v = hx.view();
+  const rows = d.data.filter((r) => hx.inView(r.season, v) && r.located).sort((a, b) => a.date.localeCompare(b.date));
+  const W = Math.max(280, el.clientWidth || 600), H = 200, m = { t: 10, r: 8, b: 26, l: 26 };
+  const x = d3.scaleBand(rows.map((r) => r.game_id), [m.l, W - m.r]).padding(0.25);
+  const y = d3.scaleLinear([0, Math.max(4, d3.max(rows, (r) => r.post_area_fga) || 0)], [H - m.b, m.t]).nice();
+  const fg = hx.css('--color-fg-muted') || '#888';
+  const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%');
+  const gy = svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(d3.format('d')).tickSize(-(W - m.l - m.r)));
+  gy.attr('font-size', null).attr('font-family', null);
+  gy.select('.domain').remove();
+  gy.selectAll('line').attr('stroke', hx.css('--cds-chart-grid') || '#ddd');
+  gy.selectAll('text').attr('fill', fg).style('font-size', 'var(--cds-font-size-caption)');
+  const bw = Math.min(28, x.bandwidth());
+  const off = (x.bandwidth() - bw) / 2;
+  const g = svg.append('g');
+  rows.forEach((r) => {
+    const gx = x(r.game_id) + off;
+    if (r.post_area_fga > r.post_area_fgm) g.append('rect').attr('x', gx).attr('width', bw).attr('y', y(r.post_area_fga)).attr('height', y(r.post_area_fgm) - y(r.post_area_fga)).attr('fill', dash.colors[0]).attr('opacity', 0.35).attr('rx', Math.min(3, bw / 2)).datum(r);
+    if (r.post_area_fgm > 0) g.append('rect').attr('x', gx).attr('width', bw).attr('y', y(r.post_area_fgm)).attr('height', y(0) - y(r.post_area_fgm)).attr('fill', dash.colors[0]).datum(r);
+    g.append('rect').attr('x', x(r.game_id)).attr('width', x.bandwidth()).attr('y', m.t).attr('height', H - m.b - m.t).attr('fill', 'transparent').attr('class', 'hit').datum(r);
+  });
+  const step = Math.ceil(rows.length / Math.max(1, Math.floor((W - m.l) / 70)));
+  const xl = svg.append('g').attr('fill', fg).style('font-size', 'var(--cds-font-size-caption)').attr('text-anchor', 'middle');
+  rows.forEach((r, i) => { if (i % step === 0) xl.append('text').attr('x', x(r.game_id) + x.bandwidth() / 2).attr('y', H - 8).text(d3.utcFormat('%b %-d')(new Date(r.date + 'T00:00:00Z'))); });
+  const tip = document.createElement('div'); tip.className = 'hx-tip'; tip.hidden = true; el.appendChild(tip);
+  g.selectAll('rect.hit').on('pointerenter pointermove', (event, r) => {
+    tip.replaceChildren();
+    const a = document.createElement('div'); a.className = 'k'; a.textContent = hx.date(r.date) + ' · ' + r.opponent;
+    const b = document.createElement('div'); b.textContent = r.post_area_fgm + ' of ' + r.post_area_fga + ' post-area 2s';
+    const c = document.createElement('div'); c.textContent = r.post_moves + (r.post_moves === 1 ? ' post move' : ' post moves') + ' · ' + r.minutes + ' min';
+    tip.append(a, b, c); tip.hidden = false;
+    const box = el.getBoundingClientRect();
+    let lx = event.clientX - box.left + 12; if (lx + tip.offsetWidth > box.width) lx = Math.max(0, event.clientX - box.left - tip.offsetWidth - 12);
+    tip.style.left = lx + 'px'; tip.style.top = '4px';
+  }).on('pointerleave', () => { tip.hidden = true; });
+});
+</script>
+
+<script>
+(() => {
+  const KINDS = ['Layup', 'Dunk', 'Tip-in', 'Hook', 'Turnaround', 'Floater', 'Jumper', 'Unlabeled'];
+  const S = window.hxShot = window.hxShot || { kinds: [], side: 'All', result: 'All' };
+  const color = (k) => dash.colors[Math.max(0, KINDS.indexOf(k)) % dash.colors.length];
+  const rowsNow = () => { const d = dash.data('shots'); return d.status === 'ok' ? d.data.filter((r) => hx.inView(r.season, hx.view()) && r.x != null) : null; };
+  const match = (r, s) => (!s.kinds.length || s.kinds.includes(r.kind)) && (s.side === 'All' || r.side === s.side) && (s.result === 'All' || (s.result === 'Made') === !!r.made);
+  const syncSeg = () => {
+    document.querySelectorAll('.hx-seg [data-side]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.side === S.side)));
+    document.querySelectorAll('.hx-seg [data-result]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.result === S.result)));
+  };
+  const set = (patch) => { Object.assign(S, patch); syncSeg(); ['shot-kinds', 'shot-court', 'shot-sum', 'shot-matrix'].forEach((n) => dash.draw(n)); };
+  document.querySelectorAll('.hx-seg [data-side]').forEach((b) => b.addEventListener('click', () => set({ side: b.dataset.side })));
+  document.querySelectorAll('.hx-seg [data-result]').forEach((b) => b.addEventListener('click', () => set({ result: b.dataset.result })));
+  document.querySelectorAll('.hx-reset').forEach((b) => b.addEventListener('click', () => set({ kinds: [], side: 'All', result: 'All' })));
+  syncSeg();
+
+  dash.draw('shot-kinds', (el) => {
+    el.replaceChildren();
+    const rows = rowsNow();
+    if (!rows) { el.textContent = '—'; return; }
+    const base = rows.filter((r) => match(r, { ...S, kinds: [] }));
+    const chip = (label, n, col, pressed, onClick) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'hx-chip'; b.setAttribute('aria-pressed', String(pressed));
+      if (col) { const sw = document.createElement('span'); sw.className = 'hx-sw'; sw.style.background = col; b.appendChild(sw); }
+      const t = document.createElement('span'); t.textContent = label;
+      const c = document.createElement('span'); c.className = 'hx-cnt'; c.textContent = n;
+      b.append(t, c); b.addEventListener('click', onClick); el.appendChild(b);
+    };
+    chip('All types', base.length, null, !S.kinds.length, () => set({ kinds: [] }));
+    KINDS.filter((k) => rows.some((r) => r.kind === k)).forEach((k) => {
+      chip(k, base.filter((r) => r.kind === k).length, color(k), S.kinds.includes(k), () => {
+        set({ kinds: S.kinds.includes(k) ? S.kinds.filter((x) => x !== k) : [...S.kinds, k] });
+      });
+    });
+  });
+
+  dash.draw('shot-sum', (el) => {
+    const rows = rowsNow();
+    if (!rows) { el.textContent = '—'; return; }
+    const sel = rows.filter((r) => match(r, S));
+    const made = sel.filter((r) => r.made).length;
+    const parts = [S.kinds.length ? S.kinds.join(', ') : 'All shot types', S.side === 'All' ? 'every side' : (S.side === 'Middle' ? 'middle' : S.side.toLowerCase() + ' side')];
+    if (S.result !== 'All') parts.push(S.result.toLowerCase() + ' only');
+    el.replaceChildren();
+    const a = document.createElement('span'); a.className = 'hx-sum-big';
+    a.textContent = sel.length ? made + ' of ' + sel.length + ' made · ' + d3.format('.0%')(made / sel.length) : 'No shots match';
+    const b = document.createElement('span'); b.className = 'hx-label'; b.textContent = parts.join(' · ');
+    el.append(a, b);
+  });
+
+  dash.draw('shot-court', (el) => {
+    el.replaceChildren();
+    const rows = rowsNow();
+    if (!rows) return;
+    const muted = hx.css('--color-fg-muted') || '#888';
+    const fgc = hx.css('--color-fg') || '#222';
+    const line = hx.css('--cds-chart-axis') || muted;
+    const panel = hx.css('--color-panel') || 'transparent';
+    const px = (x) => (50 - x) * 10, py = (y) => 300 - (y + 5.25) * 10;
+    const svg = d3.select(el).append('svg').attr('viewBox', '0 0 500 302').attr('width', '100%').attr('role', 'img').attr('aria-label', 'Half-court shot chart, basket at the bottom');
+    const sides = { Left: [0, 230], Middle: [230, 270], Right: [270, 500] };
+    if (S.side !== 'All') { const [a, b] = sides[S.side]; svg.append('rect').attr('x', a).attr('y', 0).attr('width', b - a).attr('height', 300).attr('fill', fgc).attr('opacity', 0.07); }
+    const g = svg.append('g').attr('fill', 'none').attr('stroke', line).attr('stroke-width', 1.2);
+    g.append('rect').attr('x', 0.5).attr('y', 0.5).attr('width', 499).attr('height', 299.5);
+    g.append('rect').attr('x', 190).attr('y', 110).attr('width', 120).attr('height', 190);
+    g.append('path').attr('d', 'M190,110 A60,60 0 0,1 310,110');
+    g.append('path').attr('d', 'M190,110 A60,60 0 0,0 310,110').attr('stroke-dasharray', '4 4');
+    g.append('path').attr('d', 'M33.5,300 L33.5,200.7 A221.5,221.5 0 0,1 466.5,200.7 L466.5,300');
+    g.append('line').attr('x1', 220).attr('x2', 280).attr('y1', 260).attr('y2', 260);
+    g.append('circle').attr('cx', 250).attr('cy', 247.5).attr('r', 7.5);
+    g.append('path').attr('d', 'M210,247.5 A40,40 0 0,1 290,247.5');
+    [230, 270].forEach((x) => svg.append('line').attr('x1', x).attr('x2', x).attr('y1', 26).attr('y2', 300).attr('stroke', line).attr('stroke-dasharray', '2 5').attr('opacity', 0.6));
+    const lab = svg.append('g').attr('font-size', 13).attr('text-anchor', 'middle');
+    [['Left side', 'Left', 115], ['Middle', 'Middle', 250], ['Right side', 'Right', 385]].forEach(([t, key, x]) => {
+      const hit = S.side === key;
+      lab.append('text').attr('x', x).attr('y', 18).attr('font-weight', hit ? 600 : 400).attr('fill', hit ? fgc : muted).text(t);
+    });
+    const hash = (s) => { let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) | 0; return Math.abs(h); };
+    const counts = d3.rollup(rows, (a) => a.length, (r) => r.x + ',' + r.y);
+    const pos = (r) => { const n = counts.get(r.x + ',' + r.y), h = hash(r.shot_id), j = n > 1 ? Math.min(10, 3 + n) : 0; return [px(r.x) + ((h % 100) / 100 - 0.5) * j, py(r.y) + ((Math.floor(h / 100) % 100) / 100 - 0.5) * j]; };
+    const on = rows.filter((r) => match(r, S)), off = rows.filter((r) => !match(r, S));
+    const faint = svg.append('g');
+    off.forEach((r) => { const [cx, cy] = pos(r); faint.append('circle').attr('cx', cx).attr('cy', cy).attr('r', 2.5).attr('fill', muted).attr('opacity', 0.22); });
+    const hot = svg.append('g');
+    [...on.filter((r) => !r.made), ...on.filter((r) => r.made)].forEach((r) => {
+      const [cx, cy] = pos(r), col = color(r.kind);
+      hot.append('circle').attr('cx', cx).attr('cy', cy).attr('r', 5.5)
+        .attr('fill', r.made ? col : panel).attr('stroke', r.made ? panel : col).attr('stroke-width', r.made ? 1 : 2.2).datum(r);
+    });
+    const tip = document.createElement('div'); tip.className = 'hx-tip'; tip.hidden = true; el.appendChild(tip);
+    const show = (event, r) => {
+      tip.replaceChildren();
+      const a = document.createElement('div'); a.className = 'k'; a.textContent = hx.date(r.date) + ' · ' + r.opponent;
+      const b = document.createElement('div'); b.style.display = 'flex'; b.style.alignItems = 'center'; b.style.gap = '0.4rem';
+      const sw = document.createElement('span'); sw.className = 'hx-sw'; sw.style.background = color(r.kind);
+      const bt = document.createElement('span'); bt.textContent = r.kind + ' · ' + (r.made ? 'made' : 'missed');
+      b.append(sw, bt);
+      const c = document.createElement('div'); c.textContent = r.play.replace(/ (VT stats: [^)]*)/, '');
+      const e = document.createElement('div'); e.className = 'k'; e.textContent = r.half + ' half ' + r.clock + ' · ' + r.dist_ft + ' ft · ' + (r.side === 'Middle' ? 'middle' : r.side.toLowerCase() + ' side');
+      tip.append(a, b, c, e); tip.hidden = false;
+      const box = el.getBoundingClientRect();
+      let lx = event.clientX - box.left + 12, ly = event.clientY - box.top + 12;
+      if (lx + tip.offsetWidth > box.width) lx = Math.max(0, event.clientX - box.left - tip.offsetWidth - 12);
+      if (ly + tip.offsetHeight > box.height) ly = Math.max(0, event.clientY - box.top - tip.offsetHeight - 12);
+      tip.style.left = lx + 'px'; tip.style.top = ly + 'px';
+    };
+    hot.selectAll('circle').style('cursor', 'pointer').on('pointerenter pointermove pointerdown', show).on('pointerleave', () => { tip.hidden = true; });
+  });
+
+  dash.draw('shot-matrix', (el) => {
+    el.replaceChildren();
+    const rows = rowsNow();
+    if (!rows) return;
+    const grid = document.createElement('div'); grid.className = 'hx-mx';
+    const head = (t) => { const c = document.createElement('div'); c.className = 'h'; c.textContent = t; grid.appendChild(c); };
+    head(''); ['Left', 'Middle', 'Right', 'All sides'].forEach(head);
+    const kinds = ['All types', ...KINDS.filter((k) => rows.some((r) => r.kind === k))];
+    const c0 = dash.colors[0];
+    kinds.forEach((k) => {
+      const rl = document.createElement('div'); rl.className = 'h rl';
+      if (k !== 'All types') { const sw = document.createElement('span'); sw.className = 'hx-sw'; sw.style.background = color(k); rl.appendChild(sw); }
+      const t = document.createElement('span'); t.textContent = k; rl.appendChild(t); grid.appendChild(rl);
+      ['Left', 'Middle', 'Right', 'All'].forEach((side) => {
+        const sel = rows.filter((r) => (k === 'All types' || r.kind === k) && (side === 'All' || r.side === side));
+        const b = document.createElement('button'); b.type = 'button';
+        const want = k === 'All types' ? [] : [k];
+        const active = S.side === side && S.kinds.length === want.length && want.every((x) => S.kinds.includes(x));
+        if (active) b.className = 'on';
+        b.setAttribute('aria-pressed', String(active));
+        if (!sel.length) { b.textContent = '–'; b.disabled = true; grid.appendChild(b); return; }
+        const made = sel.filter((r) => r.made).length, pct = made / sel.length;
+        b.textContent = made + '/' + sel.length;
+        const s = document.createElement('span'); s.textContent = d3.format('.0%')(pct); b.appendChild(s);
+        if (sel.length >= 3) b.style.background = 'color-mix(in srgb, ' + c0 + ' ' + Math.round(pct * 55) + '%, transparent)';
+        b.setAttribute('aria-label', k + ', ' + (side === 'All' ? 'all sides' : side.toLowerCase()) + ': ' + made + ' of ' + sel.length + ' made');
+        b.addEventListener('click', () => set({ kinds: want, side, result: 'All' }));
+        grid.appendChild(b);
+      });
+    });
+    el.appendChild(grid);
+  });
+})();
+</script>
